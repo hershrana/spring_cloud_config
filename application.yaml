@@ -12,8 +12,6 @@ okta:
     issuer: https://dev-15585796.okta.com/oauth2/default
     audience: api://default
 spring:
-  config:
-    import: configserver:http://localhost:9296
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: local_user
