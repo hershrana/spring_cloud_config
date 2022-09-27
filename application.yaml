@@ -20,3 +20,33 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+  cloud:
+    gateway:
+      routes:
+      - id : order-service
+        uri : lb://order-service
+        predicates:
+        - Path=/order/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: order-service
+            fallbackuri: forward:/orderServiceFallBack
+      - id : product-service
+        uri : lb://product-service
+        predicates:
+        - Path=/product/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: product-service
+            fallbackuri: forward:/productServiceFallBack
+      - id : payment-service
+        uri : lb://payment-service
+        predicates:
+        - Path=/payment/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: payment-service
+            fallbackuri: forward:/paymentServiceFallBack
