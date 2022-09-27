@@ -36,7 +36,6 @@ spring:
           args:
             redis-rate-limiter.replenishtRate: 1
             redis-rate-limiter.burstCapacity: 1
-         -name: 
       - id : product-service
         uri : lb://product-service
         predicates:
